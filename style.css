@@ -2,13 +2,13 @@ function connectWallet() {
   if (window.solana && window.solana.isPhantom) {
     window.solana.connect()
       .then(resp => {
-        document.getElementById("status").innerText = "✅ Wallet Connected: " + resp.publicKey.toString().slice(0, 8) + "...";
+        document.getElementById("status").innerText = "✅ Connected: " + resp.publicKey.toString().slice(0, 8) + "...";
       })
       .catch(() => {
-        document.getElementById("status").innerText = "❌ Connection Cancelled";
+        document.getElementById("status").innerText = "❌ Wallet connection cancelled.";
       });
   } else {
-    alert("Please install Phantom Wallet");
+    alert("Please install Phantom Wallet to continue.");
   }
 }
 
@@ -16,12 +16,16 @@ function enterMatch() {
   const statusEl = document.getElementById("status");
   const resultEl = document.getElementById("result");
 
-  statusEl.innerText = "🕹️ Waiting for opponent...";
+  statusEl.innerText = "🎯 Finding an opponent...";
   resultEl.innerText = "";
 
   setTimeout(() => {
-    const win = Math.random() > 0.5;
-    resultEl.innerText = win ? "🔥 You Won 0.01 SOL!" : "💀 You Lost!";
-    statusEl.innerText = "Match Complete";
+    const didWin = Math.random() > 0.5;
+
+    resultEl.innerText = didWin
+      ? "🔥 You Won 0.01 SOL!"
+      : "💀 You Lost... Try Again!";
+
+    statusEl.innerText = "✔️ Match Complete";
   }, 2500);
 }
