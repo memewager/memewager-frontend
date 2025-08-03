@@ -1,59 +1,78 @@
 body {
-  background: radial-gradient(#0d0d0d, #000);
-  color: #fff;
-  font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
-  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0e0e0e;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.container {
+  min-height: 100vh;
+  flex-direction: column;
   text-align: center;
-  padding: 30px;
-  max-width: 500px;
 }
 
 h1 {
-  font-size: 3.5rem;
-  margin-bottom: 0.2em;
+  font-size: 3rem;
+  margin-bottom: 10px;
 }
 
 h1 span {
   color: #00ff88;
-  text-shadow: 0 0 6px #00ff88;
+  text-shadow: 0 0 5px #00ff88aa;
 }
 
 .tagline {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+.tier-select {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tier-select button {
+  background-color: #1a1a1a;
+  border: 1px solid #00ff88;
+  color: #00ff88;
+  padding: 12px 16px;
+  border-radius: 10px;
   font-size: 1rem;
-  color: #aaa;
-  margin-bottom: 2em;
+  cursor: pointer;
+  min-width: 120px;
+  transition: 0.2s ease;
+}
+
+.tier-select button:hover {
+  background-color: #00ff88;
+  color: #000;
 }
 
 .buttons button {
   background-color: #00ff88;
   color: #000;
   border: none;
-  padding: 14px 26px;
+  padding: 14px 24px;
   margin: 10px;
   font-size: 1rem;
-  font-weight: 600;
-  border-radius: 10px;
+  border-radius: 12px;
+  font-weight: bold;
   cursor: pointer;
-  transition: 0.2s ease-in-out;
+  transition: 0.3s ease;
 }
 
 .buttons button:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 15px #00ff88aa;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #00ff88aa;
 }
 
 .status, .result {
-  margin-top: 30px;
-  font-size: 1.3rem;
-  font-weight: 500;
+  margin-top: 25px;
+  font-size: 1.2rem;
   min-height: 30px;
-  transition: all 0.3s;
 }
