@@ -5,21 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MemeWager</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
   <script defer src="script.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1><span>Meme</span>Wager</h1>
+  <h1><span>Meme</span>Wager</h1>
+  <p class="tagline">Wager SOL. Win big. Get paid.</p>
 
-    <p class="tagline">Put your SOL where your memes are</p>
-
-    <div class="buttons">
-      <button onclick="connectWallet()">🔗 Connect Wallet</button>
-      <button onclick="enterMatch()">🎮 Enter Match (0.01 SOL)</button>
-    </div>
-
-    <div id="status" class="status"></div>
-    <div id="result" class="result"></div>
+  <div class="tier-select">
+    <button onclick="selectTier(0.01)">😼 Bronze<br>0.01 SOL</button>
+    <button onclick="selectTier(0.05)">🐯 Silver<br>0.05 SOL</button>
+    <button onclick="selectTier(0.1)">🦁 Gold<br>0.10 SOL</button>
+    <button onclick="selectTier(0.5)">🐉 Diamond<br>0.50 SOL</button>
+    <button onclick="selectTier(1)">🪙 Whale<br>1.00 SOL</button>
   </div>
+
+  <div class="buttons">
+    <button onclick="connectWallet()">🔗 Connect Wallet</button>
+    <button onclick="enterMatch()">🎮 Enter Match</button>
+  </div>
+
+  <div id="status" class="status"></div>
+  <div id="result" class="result"></div>
 </body>
 </html>
