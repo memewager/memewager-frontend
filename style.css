@@ -1,31 +1,44 @@
-function connectWallet() {
+let selectedTier = 0.01;
+let playerWallet = null;
+
+function selectTier(amount) {
+  selectedTier = amount;
+  document.getElementById("status").innerText = `🎯 Selected Tier: ${amount} SOL`;
+}
+
+async function connectWallet() {
   if (window.solana && window.solana.isPhantom) {
-    window.solana.connect()
-      .then(resp => {
-        document.getElementById("status").innerText = "✅ Connected: " + resp.publicKey.toString().slice(0, 8) + "...";
-      })
-      .catch(() => {
-        document.getElementById("status").innerText = "❌ Wallet connection cancelled.";
-      });
+    try {
+      const resp = await window.solana.connect();
+      playerWallet = resp.publicKey.toString();
+      document.getElementById("status").innerText = "✅ Connected: " + playerWallet.slice(0, 8) + "...";
+    } catch (err) {
+      document.getElementById("status").innerText = "❌ Wallet not connected.";
+    }
   } else {
-    alert("Please install Phantom Wallet to continue.");
+    alert("Install Phantom Wallet to continue.");
   }
 }
 
-function enterMatch() {
-  const statusEl = document.getElementById("status");
-  const resultEl = document.getElementById("result");
+async function enterMatch() {
+  if (!playerWallet) {
+    alert("Connect wallet first.");
+    return;
+  }
 
-  statusEl.innerText = "🎯 Finding an opponent...";
-  resultEl.innerText = "";
+  document.getElementById("status").innerText = `🔄 Sending ${selectedTier} SOL...`;
+  document.getElementById("result").innerText = "";
 
+  // THIS WILL BE REPLACED with contract logic:
   setTimeout(() => {
     const didWin = Math.random() > 0.5;
 
-    resultEl.innerText = didWin
-      ? "🔥 You Won 0.01 SOL!"
-      : "💀 You Lost... Try Again!";
+    if (didWin) {
+      document.getElementById("result").innerText = `🔥 You won ${selectedTier * 0.95} SOL!`;
+    } else {
+      document.getElementById("result").innerText = "💀 You lost. Try again!";
+    }
 
-    statusEl.innerText = "✔️ Match Complete";
+    document.getElementById("status").innerText = "✔️ Match Complete";
   }, 2500);
 }
