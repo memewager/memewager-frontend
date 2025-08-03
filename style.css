@@ -1,18 +1,27 @@
-body {
-  background-color: #111;
-  color: #fff;
-  font-family: sans-serif;
-  text-align: center;
-  padding: 50px;
+function connectWallet() {
+  if (window.solana && window.solana.isPhantom) {
+    window.solana.connect()
+      .then(resp => {
+        document.getElementById("status").innerText = "✅ Wallet Connected: " + resp.publicKey.toString().slice(0, 8) + "...";
+      })
+      .catch(() => {
+        document.getElementById("status").innerText = "❌ Connection Cancelled";
+      });
+  } else {
+    alert("Please install Phantom Wallet");
+  }
 }
 
-button {
-  background: #00ff88;
-  color: #000;
-  padding: 12px 20px;
-  margin: 10px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+function enterMatch() {
+  const statusEl = document.getElementById("status");
+  const resultEl = document.getElementById("result");
+
+  statusEl.innerText = "🕹️ Waiting for opponent...";
+  resultEl.innerText = "";
+
+  setTimeout(() => {
+    const win = Math.random() > 0.5;
+    resultEl.innerText = win ? "🔥 You Won 0.01 SOL!" : "💀 You Lost!";
+    statusEl.innerText = "Match Complete";
+  }, 2500);
 }
